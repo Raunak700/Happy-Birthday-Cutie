@@ -9,86 +9,87 @@
       font-family: Arial;
       background:#ff3b3b;
       color:white;
-      text-align:center;
-    }
-
-    .container {
       display:flex;
       justify-content:center;
       align-items:center;
       height:100vh;
-      gap:30px;
+      flex-direction:column;
     }
 
     img {
-      width:250px;
+      width:220px;
       border-radius:15px;
+      margin-bottom:20px;
     }
 
-    .box {
-      width:40px;
-      height:40px;
+    .dots {
+      display:flex;
+      gap:12px;
+      margin-bottom:20px;
+    }
+
+    .dot {
+      width:14px;
+      height:14px;
       border:2px solid white;
-      margin:5px;
-      display:inline-flex;
-      justify-content:center;
-      align-items:center;
+      border-radius:50%;
+    }
+
+    .filled {
+      background:white;
     }
 
     .keypad {
       display:grid;
-      grid-template-columns:repeat(3,60px);
-      gap:10px;
-      justify-content:center;
+      grid-template-columns:repeat(3,80px);
+      gap:15px;
     }
 
     .key {
-      background:white;
-      color:#ff3b3b;
-      padding:15px;
+      width:70px;
+      height:70px;
       border-radius:50%;
+      background:rgba(255,255,255,0.2);
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      font-size:22px;
       cursor:pointer;
     }
 
     .hidden { display:none; }
+
+    h1 { margin-top:40px; }
   </style>
 
 </head>
 
 <body>
 
-<div id="lock" class="container">
+<img src="https://via.placeholder.com/250">
 
-  <img src="https://via.placeholder.com/250">
+<h3>Enter Passcode</h3>
 
-  <div>
-    <h3>Enter a passcode</h3>
+<div class="dots">
+  <div class="dot" id="d1"></div>
+  <div class="dot" id="d2"></div>
+  <div class="dot" id="d3"></div>
+  <div class="dot" id="d4"></div>
+</div>
 
-    <div>
-      <div class="box" id="b1"></div>
-      <div class="box" id="b2"></div>
-      <div class="box" id="b3"></div>
-      <div class="box" id="b4"></div>
-    </div>
-
-    <div class="keypad">
-      <div class="key" onclick="press(1)">1</div>
-      <div class="key" onclick="press(2)">2</div>
-      <div class="key" onclick="press(3)">3</div>
-      <div class="key" onclick="press(4)">4</div>
-      <div class="key" onclick="press(5)">5</div>
-      <div class="key" onclick="press(6)">6</div>
-      <div class="key" onclick="press(7)">7</div>
-      <div class="key" onclick="press(8)">8</div>
-      <div class="key" onclick="press(9)">9</div>
-      <div class="key" onclick="clearCode()">*</div>
-      <div class="key" onclick="press(0)">0</div>
-      <div class="key" onclick="checkCode()">#</div>
-    </div>
-
-    <p>hint - your fav code 😉</p>
-  </div>
-
+<div class="keypad">
+  <div class="key" onclick="press(1)">1</div>
+  <div class="key" onclick="press(2)">2</div>
+  <div class="key" onclick="press(3)">3</div>
+  <div class="key" onclick="press(4)">4</div>
+  <div class="key" onclick="press(5)">5</div>
+  <div class="key" onclick="press(6)">6</div>
+  <div class="key" onclick="press(7)">7</div>
+  <div class="key" onclick="press(8)">8</div>
+  <div class="key" onclick="press(9)">9</div>
+  <div class="key" onclick="clearCode()">⌫</div>
+  <div class="key" onclick="press(0)">0</div>
+  <div class="key" onclick="clearCode()">❌</div>
 </div>
 
 <!-- MAIN -->
@@ -109,28 +110,41 @@
 
 <script>
 let code = "";
-let realCode = "1432"; // change if needed
+let realCode = "1432";
 
 function press(num){
   if(code.length < 4){
-    code += num.toString();
-    document.getElementById("b"+code.length).innerText="•";
+    code += num;
+    document.getElementById("d"+code.length).classList.add("filled");
+  }
+
+  if(code.length === 4){
+    setTimeout(checkCode, 200);
   }
 }
 
 function clearCode(){
   code="";
   for(let i=1;i<=4;i++){
-    document.getElementById("b"+i).innerText="";
+    document.getElementById("d"+i).classList.remove("filled");
   }
 }
 
 function checkCode(){
   if(code === realCode){
-    document.getElementById("lock").style.display="none";
-    document.getElementById("main").classList.remove("hidden");
+    document.body.innerHTML = `
+      <h1 style="margin-top:100px;">Happy Birthday Akansha ❤️</h1>
+      <p>You make my days better 😊</p>
+      <h2 onclick="openGift()">🎁 Open Gift</h2>
+      <div id="gifts" class="hidden">
+        <h2>For You 💝</h2>
+        <p>🍫 Chocolate</p>
+        <p>🧸 Teddy</p>
+        <p>🌸 Flowers</p>
+      </div>
+    `;
   } else {
-    alert("Wrong code 😜");
+    alert("Wrong passcode 😜");
     clearCode();
   }
 }
