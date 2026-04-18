@@ -9,7 +9,6 @@
 :root {
     --pink-bg: #ffcce6;
     --dark-pink: #ff4da6;
-    --white: #ffffff;
 }
 
 body {
@@ -21,6 +20,7 @@ body {
     align-items: center;
     height: 100vh;
     color: #444;
+    overflow: hidden;
 }
 
 .screen {
@@ -36,6 +36,16 @@ body {
 .active { display: flex; }
 
 h2 { color: var(--dark-pink); }
+
+/* PHOTO */
+.profile {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
 
 /* PASSCODE */
 .passcode-display {
@@ -114,6 +124,14 @@ h2 { color: var(--dark-pink); }
     box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
+/* CONFETTI */
+@keyframes fall {
+    to {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
@@ -125,7 +143,12 @@ h2 { color: var(--dark-pink); }
 
 <!-- SCREEN 1 -->
 <div id="screen1" class="screen active">
-    <h2>Enter Passcode 💖</h2>
+
+    <!-- PHOTO -->
+    <img src="https://via.placeholder.com/120" class="profile">
+    <h3 style="color:#ff4da6;">Akansha 💖</h3>
+
+    <h2>Enter Passcode</h2>
     <div id="pass-display" class="passcode-display">_ _ _ _</div>
 
     <div class="keypad">
@@ -150,7 +173,7 @@ h2 { color: var(--dark-pink); }
 <div id="screen2" class="screen">
     <h2>Make a Wish Akansha ✨</h2>
     <div class="cake">🎂</div>
-    <button class="blow-btn" onclick="nextScreen(3)">Blow Candles 🎂</button>
+    <button class="blow-btn" onclick="celebrate()">Blow Candles 🎂</button>
 </div>
 
 <!-- SCREEN 3 -->
@@ -211,6 +234,23 @@ function reset() {
 function nextScreen(num) {
     document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
     document.getElementById('screen' + num).classList.add('active');
+}
+
+function celebrate(){
+    for(let i=0;i<60;i++){
+        let conf = document.createElement("div");
+        conf.innerHTML = "🎉";
+        conf.style.position = "fixed";
+        conf.style.left = Math.random()*100 + "vw";
+        conf.style.top = "-10px";
+        conf.style.fontSize = (20 + Math.random()*20) + "px";
+        conf.style.animation = "fall 2s linear forwards";
+
+        document.body.appendChild(conf);
+        setTimeout(()=>conf.remove(),2000);
+    }
+
+    setTimeout(()=> nextScreen(3), 1200);
 }
 </script>
 
