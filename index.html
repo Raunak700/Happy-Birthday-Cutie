@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>For Akansha ❤️</title>
+
+  <style>
+    body {
+      margin:0;
+      font-family: Arial;
+      background:#ff3b3b;
+      color:white;
+      text-align:center;
+    }
+
+    .container {
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      height:100vh;
+      gap:30px;
+    }
+
+    img {
+      width:250px;
+      border-radius:15px;
+    }
+
+    .box {
+      width:40px;
+      height:40px;
+      border:2px solid white;
+      margin:5px;
+      display:inline-flex;
+      justify-content:center;
+      align-items:center;
+    }
+
+    .keypad {
+      display:grid;
+      grid-template-columns:repeat(3,60px);
+      gap:10px;
+      justify-content:center;
+    }
+
+    .key {
+      background:white;
+      color:#ff3b3b;
+      padding:15px;
+      border-radius:50%;
+      cursor:pointer;
+    }
+
+    .hidden { display:none; }
+  </style>
+
+</head>
+
+<body>
+
+<div id="lock" class="container">
+
+  <img src="https://via.placeholder.com/250">
+
+  <div>
+    <h3>Enter a passcode</h3>
+
+    <div>
+      <div class="box" id="b1"></div>
+      <div class="box" id="b2"></div>
+      <div class="box" id="b3"></div>
+      <div class="box" id="b4"></div>
+    </div>
+
+    <div class="keypad">
+      <div class="key" onclick="press(1)">1</div>
+      <div class="key" onclick="press(2)">2</div>
+      <div class="key" onclick="press(3)">3</div>
+      <div class="key" onclick="press(4)">4</div>
+      <div class="key" onclick="press(5)">5</div>
+      <div class="key" onclick="press(6)">6</div>
+      <div class="key" onclick="press(7)">7</div>
+      <div class="key" onclick="press(8)">8</div>
+      <div class="key" onclick="press(9)">9</div>
+      <div class="key" onclick="clearCode()">*</div>
+      <div class="key" onclick="press(0)">0</div>
+      <div class="key" onclick="checkCode()">#</div>
+    </div>
+
+    <p>hint - your fav code 😉</p>
+  </div>
+
+</div>
+
+<!-- MAIN -->
+<div id="main" class="hidden">
+  <h1>Happy Birthday Akansha ❤️</h1>
+  <p>You make my days better 😊</p>
+
+  <h2 onclick="openGift()">🎁 Open Gift</h2>
+</div>
+
+<!-- GIFTS -->
+<div id="gifts" class="hidden">
+  <h2>For You 💝</h2>
+  <p>🍫 Chocolate</p>
+  <p>🧸 Teddy</p>
+  <p>🌸 Flowers</p>
+</div>
+
+<script>
+let code = "";
+let realCode = "1432"; // change if needed
+
+function press(num){
+  if(code.length < 4){
+    code += num.toString();
+    document.getElementById("b"+code.length).innerText="•";
+  }
+}
+
+function clearCode(){
+  code="";
+  for(let i=1;i<=4;i++){
+    document.getElementById("b"+i).innerText="";
+  }
+}
+
+function checkCode(){
+  if(code === realCode){
+    document.getElementById("lock").style.display="none";
+    document.getElementById("main").classList.remove("hidden");
+  } else {
+    alert("Wrong code 😜");
+    clearCode();
+  }
+}
+
+function openGift(){
+  document.getElementById("gifts").classList.remove("hidden");
+}
+</script>
+
+</body>
+</html>
