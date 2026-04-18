@@ -18,7 +18,7 @@ body{
     height:100vh;
 }
 
-/* LEFT SIDE */
+/* LEFT */
 .left{
     width:50%;
     position:relative;
@@ -45,7 +45,7 @@ body{
     box-shadow:0 20px 40px rgba(0,0,0,0.4);
 }
 
-/* RIGHT SIDE */
+/* RIGHT */
 .right{
     width:50%;
     display:flex;
@@ -114,8 +114,9 @@ h2{color:#ff4da6;}
 
 <body>
 
+<!-- MUSIC -->
 <audio id="music" loop>
-  <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3">
+  <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
 </audio>
 
 <div class="container">
@@ -143,7 +144,7 @@ h2{color:#ff4da6;}
 <div id="screen2" class="screen">
     <h2>Make a Wish Akansha ✨</h2>
     <div style="font-size:80px;">🎂</div>
-    <button class="btn" onclick="next('screen3')">Blow Candles</button>
+    <button class="btn" onclick="startMusic()">Blow Candles 🎂</button>
 </div>
 
 <!-- GIFTS -->
@@ -181,6 +182,7 @@ h2{color:#ff4da6;}
 </div>
 
 <script>
+// keypad
 const keypad=document.getElementById('keypad');
 [1,2,3,4,5,6,7,8,9,'⌫',0].forEach(n=>{
  let b=document.createElement('button');
@@ -199,7 +201,6 @@ function press(n){
 
  if(pass.length===4){
   if(pass===correct){
-    document.getElementById("music").play();
     setTimeout(()=>next('screen2'),300);
   } else{
     alert("Wrong 😜");
@@ -211,6 +212,14 @@ function press(n){
 function update(){
  document.getElementById("display").innerText=
  "• ".repeat(pass.length)+"_ ".repeat(4-pass.length);
+}
+
+// 🎶 MUSIC FUNCTION (WORKS ON MOBILE)
+function startMusic(){
+ let m=document.getElementById("music");
+ m.volume=0.4;
+ m.play().catch(()=>{});
+ next('screen3');
 }
 
 function next(id){
