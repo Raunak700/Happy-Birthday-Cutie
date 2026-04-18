@@ -114,9 +114,9 @@ h2{color:#ff4da6;}
 
 <body>
 
-<!-- MUSIC -->
+<!-- 🎶 MUSIC -->
 <audio id="music" loop>
-  <source src="https://github.com/Raunak700/Happy-Birthday-Cutie/blob/main/yes_to_heaven.mp3">
+  <source src="https://raw.githubusercontent.com/Raunak700/Happy-Birthday-Cutie/main/yes_to_heaven.mp3" type="audio/mpeg">
 </audio>
 
 <div class="container">
@@ -160,21 +160,21 @@ h2{color:#ff4da6;}
 <!-- GIFT 1 -->
 <div id="gift1" class="screen">
     <h2>💌 For Akansha</h2>
-    <p>YAHA KUCH NHI H NEXT GIFT PE JAYE </p>
+    <p>You make my day better 😊</p>
     <button class="btn" onclick="next('screen3')">Back</button>
 </div>
 
 <!-- GIFT 2 -->
 <div id="gift2" class="screen">
     <h2>🎟️ Special Coupon</h2>
-    <p>OHK OHK NEXT GIFT OPEN PLZ</p>
+    <p>1 Hug + 1 Movie Date 😏</p>
     <button class="btn" onclick="next('screen3')">Back</button>
 </div>
 
 <!-- GIFT 3 -->
 <div id="gift3" class="screen">
     <h2>Happy Birthday Akansha ❤️</h2>
-    <p>HAPPY HAPPY BIRTHDAY , YOOOOOOOOOOOOOOO BS ITNA HI THA </p>
+    <p>You make everything better 💫</p>
     <button class="btn" onclick="location.reload()">Restart</button>
 </div>
 
@@ -182,7 +182,7 @@ h2{color:#ff4da6;}
 </div>
 
 <script>
-// keypad
+// keypad generate
 const keypad=document.getElementById('keypad');
 [1,2,3,4,5,6,7,8,9,'⌫',0].forEach(n=>{
  let b=document.createElement('button');
@@ -193,7 +193,7 @@ const keypad=document.getElementById('keypad');
 });
 
 let pass="";
-let correct="1504";
+let correct="1804"; // ✅ UPDATED PASSCODE
 
 function press(n){
  if(n==='⌫'){pass="";update();return;}
@@ -214,7 +214,7 @@ function update(){
  "• ".repeat(pass.length)+"_ ".repeat(4-pass.length);
 }
 
-// 🎶 MUSIC FUNCTION (WORKS ON MOBILE)
+// 🎶 MUSIC (mobile + laptop working)
 function startMusic(){
  let m=document.getElementById("music");
  m.volume=0.4;
