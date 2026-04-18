@@ -1,156 +1,216 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>For Akansha ❤️</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Akansha ❤️</title>
 
-  <style>
-    body {
-      margin:0;
-      font-family: Arial;
-      background:#ff3b3b;
-      color:white;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      height:100vh;
-      flex-direction:column;
-    }
+<style>
+:root {
+    --pink-bg: #ffcce6;
+    --dark-pink: #ff4da6;
+    --white: #ffffff;
+}
 
-    img {
-      width:220px;
-      border-radius:15px;
-      margin-bottom:20px;
-    }
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg,#ffcce6,#ff99cc);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #444;
+}
 
-    .dots {
-      display:flex;
-      gap:12px;
-      margin-bottom:20px;
-    }
+.screen {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    max-width: 380px;
+    animation: fadeIn 0.5s ease-in;
+}
 
-    .dot {
-      width:14px;
-      height:14px;
-      border:2px solid white;
-      border-radius:50%;
-    }
+.active { display: flex; }
 
-    .filled {
-      background:white;
-    }
+h2 { color: var(--dark-pink); }
 
-    .keypad {
-      display:grid;
-      grid-template-columns:repeat(3,80px);
-      gap:15px;
-    }
+/* PASSCODE */
+.passcode-display {
+    font-size: 26px;
+    letter-spacing: 12px;
+    margin-bottom: 20px;
+    color: var(--dark-pink);
+}
 
-    .key {
-      width:70px;
-      height:70px;
-      border-radius:50%;
-      background:rgba(255,255,255,0.2);
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      font-size:22px;
-      cursor:pointer;
-    }
+.keypad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
 
-    .hidden { display:none; }
+.key {
+    width: 65px;
+    height: 65px;
+    background: var(--dark-pink);
+    color: white;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 4px #cc3d85;
+}
 
-    h1 { margin-top:40px; }
-  </style>
+.key:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px #cc3d85;
+}
 
+/* CAKE */
+.cake {
+    font-size: 90px;
+    animation: pop 1s infinite alternate;
+}
+
+@keyframes pop {
+    from { transform: scale(1); }
+    to { transform: scale(1.1); }
+}
+
+.blow-btn {
+    background: var(--dark-pink);
+    color: white;
+    padding: 10px 25px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+/* GIFTS */
+.gift-container {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.gift {
+    font-size: 55px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.gift:hover {
+    transform: scale(1.2);
+}
+
+/* LETTER */
+.letter {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+</style>
 </head>
 
 <body>
 
-<img src="https://via.placeholder.com/250">
+<!-- SCREEN 1 -->
+<div id="screen1" class="screen active">
+    <h2>Enter Passcode 💖</h2>
+    <div id="pass-display" class="passcode-display">_ _ _ _</div>
 
-<h3>Enter Passcode</h3>
+    <div class="keypad">
+        <button class="key" onclick="press(1)">1</button>
+        <button class="key" onclick="press(2)">2</button>
+        <button class="key" onclick="press(3)">3</button>
+        <button class="key" onclick="press(4)">4</button>
+        <button class="key" onclick="press(5)">5</button>
+        <button class="key" onclick="press(6)">6</button>
+        <button class="key" onclick="press(7)">7</button>
+        <button class="key" onclick="press(8)">8</button>
+        <button class="key" onclick="press(9)">9</button>
+        <button class="key" onclick="reset()">⌫</button>
+        <button class="key" onclick="press(0)">0</button>
+        <button class="key" onclick="reset()">❌</button>
+    </div>
 
-<div class="dots">
-  <div class="dot" id="d1"></div>
-  <div class="dot" id="d2"></div>
-  <div class="dot" id="d3"></div>
-  <div class="dot" id="d4"></div>
+    <p style="margin-top:15px;">hint - something special 😉</p>
 </div>
 
-<div class="keypad">
-  <div class="key" onclick="press(1)">1</div>
-  <div class="key" onclick="press(2)">2</div>
-  <div class="key" onclick="press(3)">3</div>
-  <div class="key" onclick="press(4)">4</div>
-  <div class="key" onclick="press(5)">5</div>
-  <div class="key" onclick="press(6)">6</div>
-  <div class="key" onclick="press(7)">7</div>
-  <div class="key" onclick="press(8)">8</div>
-  <div class="key" onclick="press(9)">9</div>
-  <div class="key" onclick="clearCode()">⌫</div>
-  <div class="key" onclick="press(0)">0</div>
-  <div class="key" onclick="clearCode()">❌</div>
+<!-- SCREEN 2 -->
+<div id="screen2" class="screen">
+    <h2>Make a Wish Akansha ✨</h2>
+    <div class="cake">🎂</div>
+    <button class="blow-btn" onclick="nextScreen(3)">Blow Candles 🎂</button>
 </div>
 
-<!-- MAIN -->
-<div id="main" class="hidden">
-  <h1>Happy Birthday Akansha ❤️</h1>
-  <p>You make my days better 😊</p>
-
-  <h2 onclick="openGift()">🎁 Open Gift</h2>
+<!-- SCREEN 3 -->
+<div id="screen3" class="screen">
+    <h2>Pick a Gift 💝</h2>
+    <div class="gift-container">
+        <div class="gift" onclick="nextScreen(4)">🎁</div>
+        <div class="gift" onclick="nextScreen(4)">🎁</div>
+        <div class="gift" onclick="nextScreen(4)">🎁</div>
+    </div>
 </div>
 
-<!-- GIFTS -->
-<div id="gifts" class="hidden">
-  <h2>For You 💝</h2>
-  <p>🍫 Chocolate</p>
-  <p>🧸 Teddy</p>
-  <p>🌸 Flowers</p>
+<!-- SCREEN 4 -->
+<div id="screen4" class="screen">
+    <div class="letter">
+        <h3>Hey Akansha ❤️</h3>
+        <p>
+            Happy Birthday 🎉<br><br>
+            You’re one of those people who makes everything feel lighter and better 😊  
+            I made this just for you… hope it makes you smile 💫  
+        </p>
+        <p>— Someone who likes you a little more than normal 😏</p>
+
+        <button class="blow-btn" onclick="location.reload()">Restart 🔄</button>
+    </div>
 </div>
 
 <script>
-let code = "";
-let realCode = "1432";
+let currentPass = "";
+const targetPass = "1504"; // 👉 change this
 
-function press(num){
-  if(code.length < 4){
-    code += num;
-    document.getElementById("d"+code.length).classList.add("filled");
-  }
+function press(num) {
+    if (currentPass.length < 4) {
+        currentPass += num.toString();
 
-  if(code.length === 4){
-    setTimeout(checkCode, 200);
-  }
+        document.getElementById('pass-display').innerText =
+            "• ".repeat(currentPass.length) +
+            "_ ".repeat(4 - currentPass.length);
+
+        if (currentPass === targetPass) {
+            setTimeout(() => nextScreen(2), 400);
+        }
+
+        if (currentPass.length === 4 && currentPass !== targetPass) {
+            setTimeout(() => {
+                alert("Wrong Code 😜");
+                reset();
+            }, 300);
+        }
+    }
 }
 
-function clearCode(){
-  code="";
-  for(let i=1;i<=4;i++){
-    document.getElementById("d"+i).classList.remove("filled");
-  }
+function reset() {
+    currentPass = "";
+    document.getElementById('pass-display').innerText = "_ _ _ _";
 }
 
-function checkCode(){
-  if(code === realCode){
-    document.body.innerHTML = `
-      <h1 style="margin-top:100px;">Happy Birthday Akansha ❤️</h1>
-      <p>You make my days better 😊</p>
-      <h2 onclick="openGift()">🎁 Open Gift</h2>
-      <div id="gifts" class="hidden">
-        <h2>For You 💝</h2>
-        <p>🍫 Chocolate</p>
-        <p>🧸 Teddy</p>
-        <p>🌸 Flowers</p>
-      </div>
-    `;
-  } else {
-    alert("Wrong passcode 😜");
-    clearCode();
-  }
-}
-
-function openGift(){
-  document.getElementById("gifts").classList.remove("hidden");
+function nextScreen(num) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById('screen' + num).classList.add('active');
 }
 </script>
 
