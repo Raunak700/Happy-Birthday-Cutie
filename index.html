@@ -6,175 +6,223 @@
 <title>For Akansha ❤️</title>
 
 <style>
-:root {
-    --pink-bg: #ffcce6;
-    --dark-pink: #ff66b2;
-}
-
 body {
-    margin: 0;
-    font-family: Arial;
-    background: var(--pink-bg);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    text-align: center;
+    margin:0;
+    font-family: 'Segoe UI', sans-serif;
+    height:100vh;
+    overflow:hidden;
 }
 
-.screen { display: none; flex-direction: column; align-items: center; width: 90%; max-width: 400px; }
-.active { display: flex; }
+/* MAIN LAYOUT */
+.container {
+    display:flex;
+    height:100vh;
+}
 
+/* LEFT SIDE (AESTHETIC PHOTO) */
+.left {
+    width:50%;
+    position:relative;
+    overflow:hidden;
+}
+
+.left img {
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    filter: blur(8px) brightness(0.7);
+}
+
+.left::after {
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(135deg, rgba(255,102,178,0.5), rgba(255,204,230,0.3));
+}
+
+/* CENTER PHOTO */
+.center-photo {
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    z-index:2;
+}
+
+.center-photo img {
+    width:250px;
+    border-radius:20px;
+    box-shadow:0 20px 40px rgba(0,0,0,0.4);
+}
+
+/* RIGHT SIDE */
+.right {
+    width:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#ffcce6,#ffe6f2);
+}
+
+/* GLASS CARD */
+.screen {
+    display:none;
+    flex-direction:column;
+    align-items:center;
+    padding:25px;
+    backdrop-filter: blur(10px);
+    background:rgba(255,255,255,0.4);
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+.active { display:flex; }
+
+h2 { color:#ff4da6; }
+
+/* KEYPAD */
 .keypad {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-    margin-top: 20px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    margin-top:15px;
 }
 
 .key {
-    width: 65px;
-    height: 65px;
-    background: var(--dark-pink);
-    color: white;
-    border-radius: 50%;
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
+    width:65px;
+    height:65px;
+    border-radius:50%;
+    border:none;
+    background:#ff4da6;
+    color:white;
+    font-size:20px;
+    cursor:pointer;
+    box-shadow:0 5px #cc3d85;
 }
 
+.key:active {
+    transform:translateY(2px);
+}
+
+/* BUTTON */
+.btn {
+    margin-top:15px;
+    padding:10px 20px;
+    border:none;
+    border-radius:20px;
+    background:#ff4da6;
+    color:white;
+    cursor:pointer;
+}
+
+/* GIFTS */
 .gift-container {
-    display: flex;
-    gap: 20px;
-    margin-top: 30px;
+    display:flex;
+    gap:15px;
 }
 
 .gift {
-    font-size: 60px;
-    cursor: pointer;
+    font-size:50px;
+    cursor:pointer;
+    transition:0.3s;
 }
 
-.btn {
-    background: var(--dark-pink);
-    color: white;
-    padding: 10px 20px;
-    border-radius: 20px;
-    border: none;
-    margin-top: 20px;
-    cursor: pointer;
-}
-
-.card {
-    background: white;
-    padding: 20px;
-    border-radius: 12px;
+.gift:hover {
+    transform:scale(1.2);
 }
 </style>
 </head>
 
 <body>
 
-<!-- PASSCODE -->
-<div id="screen1" class="screen active">
-    <h2>Enter Passcode 💖</h2>
-    <div id="pass-display">_ _ _ _</div>
-    <div class="keypad" id="keypad"></div>
-</div>
+<div class="container">
 
-<!-- CAKE -->
-<div id="screen2" class="screen">
-    <h2>Make a Wish Akansha ✨</h2>
-    <div style="font-size:80px;">🎂</div>
-    <button class="btn" onclick="showScreen('screen3')">Blow Candles</button>
-</div>
+    <!-- LEFT -->
+    <div class="left">
+        <img src="https://via.placeholder.com/600x800">
 
-<!-- GIFTS -->
-<div id="screen3" class="screen">
-    <h2>Pick a Gift 💝</h2>
-    <div class="gift-container">
-        <div class="gift" onclick="showScreen('gift1')">🎁</div>
-        <div class="gift" onclick="showScreen('gift2')">🎁</div>
-        <div class="gift" onclick="showScreen('gift3')">🎁</div>
+        <div class="center-photo">
+            <img src="https://via.placeholder.com/300">
+        </div>
     </div>
-</div>
 
-<!-- GIFT 1 -->
-<div id="gift1" class="screen">
-    <div class="card">
-        <h3>💌 For Akansha</h3>
-        <p>You’re one of the best parts of my day 😊</p>
-        <button class="btn" onclick="showScreen('screen3')">Back</button>
-    </div>
-</div>
+    <!-- RIGHT -->
+    <div class="right">
 
-<!-- GIFT 2 -->
-<div id="gift2" class="screen">
-    <div class="card">
-        <h3>🎟️ Coupon</h3>
-        <p>1 Hug + 1 Movie Date 😏</p>
-        <button class="btn" onclick="showScreen('screen3')">Back</button>
-    </div>
-</div>
+        <!-- PASSCODE -->
+        <div id="screen1" class="screen active">
+            <h2>Enter Passcode 💖</h2>
+            <div id="pass-display">_ _ _ _</div>
+            <div class="keypad" id="keypad"></div>
+        </div>
 
-<!-- GIFT 3 -->
-<div id="gift3" class="screen">
-    <div class="card">
-        <h3>✨ Final Message</h3>
-        <p>I like you… maybe a little more than I should 😌</p>
-        <button class="btn" onclick="showScreen('screen6')">Continue</button>
-    </div>
-</div>
+        <!-- CAKE -->
+        <div id="screen2" class="screen">
+            <h2>Make a Wish Akansha ✨</h2>
+            <div style="font-size:80px;">🎂</div>
+            <button class="btn" onclick="showScreen('screen3')">Blow Candles</button>
+        </div>
 
-<!-- FINAL -->
-<div id="screen6" class="screen">
-    <div class="card">
-        <h2>Happy Birthday Akansha ❤️</h2>
-        <p>You make everything better just by being there 💫</p>
-        <button class="btn" onclick="location.reload()">Restart</button>
+        <!-- GIFTS -->
+        <div id="screen3" class="screen">
+            <h2>Pick a Gift 💝</h2>
+            <div class="gift-container">
+                <div class="gift" onclick="showScreen('gift1')">🎁</div>
+                <div class="gift" onclick="showScreen('gift2')">🎁</div>
+                <div class="gift" onclick="showScreen('gift3')">🎁</div>
+            </div>
+        </div>
+
+        <!-- FINAL -->
+        <div id="gift3" class="screen">
+            <h2>Happy Birthday Akansha ❤️</h2>
+            <p>You make everything better 💫</p>
+            <button class="btn" onclick="location.reload()">Restart</button>
+        </div>
+
     </div>
+
 </div>
 
 <script>
-// keypad generate
 const keypad = document.getElementById('keypad');
-[1,2,3,4,5,6,7,8,9,'⌫',0,'OK'].forEach(num => {
-    const btn = document.createElement('button');
-    btn.className = 'key';
-    btn.innerText = num;
-    btn.onclick = () => press(num);
+[1,2,3,4,5,6,7,8,9,'⌫',0].forEach(num => {
+    const btn=document.createElement('button');
+    btn.className='key';
+    btn.innerText=num;
+    btn.onclick=()=>press(num);
     keypad.appendChild(btn);
 });
 
-let currentPass = "";
-let targetPass = "1504"; // change here
+let pass="";
+let correct="1504";
 
 function press(num){
-    if(num === '⌫'){
-        currentPass = "";
-        updateDisplay();
+    if(num==='⌫'){
+        pass="";
+        update();
         return;
     }
 
-    if(currentPass.length < 4 && num !== 'OK'){
-        currentPass += num;
-        updateDisplay();
+    if(pass.length<4){
+        pass+=num;
+        update();
     }
 
-    if(currentPass.length === 4){
-        if(currentPass === targetPass){
+    if(pass.length===4){
+        if(pass===correct){
             setTimeout(()=>showScreen('screen2'),300);
         } else {
-            alert("Wrong code 😜");
-            currentPass="";
-            updateDisplay();
+            alert("Wrong 😜");
+            pass="";
+            update();
         }
     }
 }
 
-function updateDisplay(){
+function update(){
     document.getElementById('pass-display').innerText =
-        "• ".repeat(currentPass.length) +
-        "_ ".repeat(4-currentPass.length);
+    "• ".repeat(pass.length)+"_ ".repeat(4-pass.length);
 }
 
 function showScreen(id){
