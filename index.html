@@ -6,57 +6,47 @@
 <title>For Akansha ❤️</title>
 
 <style>
-body {
+body{
     margin:0;
-    font-family: 'Segoe UI', sans-serif;
+    font-family:'Segoe UI',sans-serif;
     height:100vh;
     overflow:hidden;
 }
 
-/* MAIN LAYOUT */
-.container {
+.container{
     display:flex;
     height:100vh;
 }
 
-/* LEFT SIDE (AESTHETIC PHOTO) */
-.left {
+/* LEFT SIDE */
+.left{
     width:50%;
     position:relative;
-    overflow:hidden;
 }
 
-.left img {
+.bg-img{
     width:100%;
     height:100%;
     object-fit:cover;
-    filter: blur(8px) brightness(0.7);
+    filter:blur(10px) brightness(0.6);
 }
 
-.left::after {
-    content:"";
-    position:absolute;
-    inset:0;
-    background:linear-gradient(135deg, rgba(255,102,178,0.5), rgba(255,204,230,0.3));
-}
-
-/* CENTER PHOTO */
-.center-photo {
+.center-photo{
     position:absolute;
     top:50%;
     left:50%;
     transform:translate(-50%,-50%);
-    z-index:2;
 }
 
-.center-photo img {
-    width:250px;
+.main-img{
+    width:260px;
     border-radius:20px;
+    border:3px solid white;
     box-shadow:0 20px 40px rgba(0,0,0,0.4);
 }
 
 /* RIGHT SIDE */
-.right {
+.right{
     width:50%;
     display:flex;
     justify-content:center;
@@ -64,31 +54,30 @@ body {
     background:linear-gradient(135deg,#ffcce6,#ffe6f2);
 }
 
-/* GLASS CARD */
-.screen {
+/* SCREEN */
+.screen{
     display:none;
     flex-direction:column;
     align-items:center;
     padding:25px;
-    backdrop-filter: blur(10px);
-    background:rgba(255,255,255,0.4);
+    background:rgba(255,255,255,0.5);
     border-radius:20px;
-    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+    backdrop-filter:blur(10px);
 }
 
-.active { display:flex; }
+.active{display:flex;}
 
-h2 { color:#ff4da6; }
+h2{color:#ff4da6;}
 
 /* KEYPAD */
-.keypad {
+.keypad{
     display:grid;
     grid-template-columns:repeat(3,1fr);
     gap:12px;
     margin-top:15px;
 }
 
-.key {
+.key{
     width:65px;
     height:65px;
     border-radius:50%;
@@ -97,15 +86,10 @@ h2 { color:#ff4da6; }
     color:white;
     font-size:20px;
     cursor:pointer;
-    box-shadow:0 5px #cc3d85;
-}
-
-.key:active {
-    transform:translateY(2px);
 }
 
 /* BUTTON */
-.btn {
+.btn{
     margin-top:15px;
     padding:10px 20px;
     border:none;
@@ -116,118 +100,122 @@ h2 { color:#ff4da6; }
 }
 
 /* GIFTS */
-.gift-container {
+.gift-container{
     display:flex;
     gap:15px;
 }
 
-.gift {
-    font-size:50px;
+.gift{
+    font-size:55px;
     cursor:pointer;
-    transition:0.3s;
-}
-
-.gift:hover {
-    transform:scale(1.2);
 }
 </style>
 </head>
 
 <body>
 
+<audio id="music" loop>
+  <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3">
+</audio>
+
 <div class="container">
 
-    <!-- LEFT -->
-    <div class="left">
-        <img src="https://github.com/Raunak700/Happy-Birthday-Cutie/blob/main/2026-04-18%2014.28.34.jpg?raw=true">
+<!-- LEFT -->
+<div class="left">
+    <img class="bg-img" src="https://raw.githubusercontent.com/Raunak700/Happy-Birthday-Cutie/main/2026-04-18%2014.28.34.jpg">
 
-        <div class="center-photo">
-            <img src="https://github.com/Raunak700/Happy-Birthday-Cutie/blob/main/2026-04-18%2014.28.34.jpg?raw=true">
-        </div>
+    <div class="center-photo">
+        <img class="main-img" src="https://raw.githubusercontent.com/Raunak700/Happy-Birthday-Cutie/main/2026-04-18%2014.28.34.jpg">
     </div>
+</div>
 
-    <!-- RIGHT -->
-    <div class="right">
+<!-- RIGHT -->
+<div class="right">
 
-        <!-- PASSCODE -->
-        <div id="screen1" class="screen active">
-            <h2>Enter Passcode 💖</h2>
-            <div id="pass-display">_ _ _ _</div>
-            <div class="keypad" id="keypad"></div>
-        </div>
+<!-- PASSCODE -->
+<div id="screen1" class="screen active">
+    <h2>Enter Passcode 💖</h2>
+    <div id="display">_ _ _ _</div>
+    <div class="keypad" id="keypad"></div>
+</div>
 
-        <!-- CAKE -->
-        <div id="screen2" class="screen">
-            <h2>Make a Wish Akansha ✨</h2>
-            <div style="font-size:80px;">🎂</div>
-            <button class="btn" onclick="showScreen('screen3')">Blow Candles</button>
-        </div>
+<!-- CAKE -->
+<div id="screen2" class="screen">
+    <h2>Make a Wish Akansha ✨</h2>
+    <div style="font-size:80px;">🎂</div>
+    <button class="btn" onclick="next('screen3')">Blow Candles</button>
+</div>
 
-        <!-- GIFTS -->
-        <div id="screen3" class="screen">
-            <h2>Pick a Gift 💝</h2>
-            <div class="gift-container">
-                <div class="gift" onclick="showScreen('gift1')">🎁</div>
-                <div class="gift" onclick="showScreen('gift2')">🎁</div>
-                <div class="gift" onclick="showScreen('gift3')">🎁</div>
-            </div>
-        </div>
-
-        <!-- FINAL -->
-        <div id="gift3" class="screen">
-            <h2>Happy Birthday Akansha ❤️</h2>
-            <p>You make everything better 💫</p>
-            <button class="btn" onclick="location.reload()">Restart</button>
-        </div>
-
+<!-- GIFTS -->
+<div id="screen3" class="screen">
+    <h2>Pick a Gift 💝</h2>
+    <div class="gift-container">
+        <div class="gift" onclick="next('gift1')">🎁</div>
+        <div class="gift" onclick="next('gift2')">🎁</div>
+        <div class="gift" onclick="next('gift3')">🎁</div>
     </div>
+</div>
 
+<!-- GIFT 1 -->
+<div id="gift1" class="screen">
+    <h2>💌 For Akansha</h2>
+    <p>You make my day better 😊</p>
+    <button class="btn" onclick="next('screen3')">Back</button>
+</div>
+
+<!-- GIFT 2 -->
+<div id="gift2" class="screen">
+    <h2>🎟️ Special Coupon</h2>
+    <p>1 Hug + 1 Movie Date 😏</p>
+    <button class="btn" onclick="next('screen3')">Back</button>
+</div>
+
+<!-- GIFT 3 -->
+<div id="gift3" class="screen">
+    <h2>Happy Birthday Akansha ❤️</h2>
+    <p>You make everything better 💫</p>
+    <button class="btn" onclick="location.reload()">Restart</button>
+</div>
+
+</div>
 </div>
 
 <script>
-const keypad = document.getElementById('keypad');
-[1,2,3,4,5,6,7,8,9,'⌫',0].forEach(num => {
-    const btn=document.createElement('button');
-    btn.className='key';
-    btn.innerText=num;
-    btn.onclick=()=>press(num);
-    keypad.appendChild(btn);
+const keypad=document.getElementById('keypad');
+[1,2,3,4,5,6,7,8,9,'⌫',0].forEach(n=>{
+ let b=document.createElement('button');
+ b.className='key';
+ b.innerText=n;
+ b.onclick=()=>press(n);
+ keypad.appendChild(b);
 });
 
 let pass="";
 let correct="1504";
 
-function press(num){
-    if(num==='⌫'){
-        pass="";
-        update();
-        return;
-    }
+function press(n){
+ if(n==='⌫'){pass="";update();return;}
+ if(pass.length<4){pass+=n;update();}
 
-    if(pass.length<4){
-        pass+=num;
-        update();
-    }
-
-    if(pass.length===4){
-        if(pass===correct){
-            setTimeout(()=>showScreen('screen2'),300);
-        } else {
-            alert("Wrong 😜");
-            pass="";
-            update();
-        }
-    }
+ if(pass.length===4){
+  if(pass===correct){
+    document.getElementById("music").play();
+    setTimeout(()=>next('screen2'),300);
+  } else{
+    alert("Wrong 😜");
+    pass="";update();
+  }
+ }
 }
 
 function update(){
-    document.getElementById('pass-display').innerText =
-    "• ".repeat(pass.length)+"_ ".repeat(4-pass.length);
+ document.getElementById("display").innerText=
+ "• ".repeat(pass.length)+"_ ".repeat(4-pass.length);
 }
 
-function showScreen(id){
-    document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
+function next(id){
+ document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+ document.getElementById(id).classList.add('active');
 }
 </script>
 
